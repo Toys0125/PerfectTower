@@ -1,0 +1,23 @@
+:import factory constants
+
+:name {script_name(produce misc#2)}
+
+:global int _tier
+:local double previous_amount
+
+previous_amount = count("ingot.rainbow", 1)
+produce("ingot.rainbow", 1, min(previous_amount, {get_queue(1, rainbow_plate)}), "presser")
+{subtract_queue(1, rainbow_plate, (previous_amount - count("ingot.rainbow", 1)))}
+
+previous_amount = count("pumpkin", 1)
+produce("pumpkin", 1, min(previous_amount, {get_queue(1, anti_pumpkin)}), "boiler")
+{subtract_queue(1, anti_pumpkin, (previous_amount - count("pumpkin", 1)))}
+
+previous_amount = count("pumpkin.stack", 1)
+produce("pumpkin.stack", 1, min(previous_amount, {get_queue(1, pumpkin_plate)}), "presser")
+{subtract_queue(1, pumpkin_plate, (previous_amount - count("pumpkin.stack", 1)))}
+
+previous_amount = count("pumpkin", 1)
+produce("pumpkin", 1, min(previous_amount, {get_queue(1, pumpkin_carved)}), "cutter")
+{subtract_queue(1, pumpkin_carved, (previous_amount - count("pumpkin", 1)))}
+wait(0.0)
