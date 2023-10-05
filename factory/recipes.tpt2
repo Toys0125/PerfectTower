@@ -291,6 +291,11 @@
 {component(1, void_essence, 0 0 1)}
 {component(-1, resource_booster, 0 1 2)}
 
+{recipe(pumpkin_producer)}
+{component(1, pumpkin_plate, 20)}
+{component(1, pumpkin_carved, 6)}
+{component(1, anti_pumpkin, 6)}
+
 {recipe(oven)}
 {component(0, plate, 4 6 8 8 8 8 8 8 8 8)}
 {component(0, insul_cable, 2 2 3 3 3 4 4 4 4 4)}
@@ -394,6 +399,9 @@
 
 {recipe(stacked_plate)}
 {component(0, plate, 9)}
+
+{recipe(stacked_pumpkin)}
+{component(0, pumpkin, 9)}
 
 {recipe(motor)}
 {component(0, plate, 4)}
