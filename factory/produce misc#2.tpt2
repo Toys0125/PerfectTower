@@ -10,7 +10,7 @@ produce("ingot.rainbow", 1, min(previous_amount, {get_queue(1, rainbow_plate)}),
 {subtract_queue(1, rainbow_plate, (previous_amount - count("ingot.rainbow", 1)))}
 
 previous_amount = count("pumpkin", 1)
-produce("pumpkin", 1, min(previous_amount, {get_queue(1, anti_pumpkin)}), "boiler")
+produce("pumpkin", 1, {get_queue(1, anti_pumpkin)}, "boiler")
 {subtract_queue(1, anti_pumpkin, (previous_amount - count("pumpkin", 1)))}
 
 previous_amount = count("pumpkin.stack", 1)
@@ -18,6 +18,6 @@ produce("pumpkin.stack", 1, min(previous_amount, {get_queue(1, pumpkin_plate)}),
 {subtract_queue(1, pumpkin_plate, (previous_amount - count("pumpkin.stack", 1)))}
 
 previous_amount = count("pumpkin", 1)
-produce("pumpkin", 1, min(previous_amount, {get_queue(1, pumpkin_carved)}), "cutter")
+produce("pumpkin", 1, {get_queue(1, pumpkin_carved)}, "cutter")
 {subtract_queue(1, pumpkin_carved, (previous_amount - count("pumpkin", 1)))}
 wait(0.0)

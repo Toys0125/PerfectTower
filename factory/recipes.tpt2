@@ -567,8 +567,18 @@
 {recipe(rubber_plate)}
 {component(0, rubber, 1)}
 
+{recipe(anti_pumpkin)}
+{component(0, pumpkin, 1)}
+
+{recipe(pumpkin_carved)}
+{component(0, pumpkin, 1)}
+
+{recipe(pumpkin_plate)}
+{component(0, stacked_pumpkin, 1)}
+
 ; Terminal items, unable to be crafted.
 {recipe(rubber)}
 {recipe(void_essence)}
+{recipe(pumpkin)}
 
 ; ===== END RECIPES =====

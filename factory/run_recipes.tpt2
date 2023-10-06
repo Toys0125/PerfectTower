@@ -164,21 +164,23 @@
   factory.main_size = 4 * num_terms + 3;\
   acc_main[#acc_main + 1] = '"';\
   factory.multipliers = {};\
-  factory.num_terms = num_terms;\
-  factory.recipe_limit = recipe_limit;\
   for i = 1, num_terms do\
-    if mult_max[i] >= #multipliers then\
-      return "Multiplier limit exceeded at " .. i;\
-    end\
     factory.multipliers[i] = sub(multipliers, 1, mult_max[i] + 1);\
   end;\
+  factory.num_terms = num_terms;\
+  factory.recipe_limit = recipe_limit;\
   return table.concat(acc_main);\
 )}
 
 #lookup_item {lua(\
+  acc = {};\
+  for i = 1, #factory.items do\
+    acc[i] = "|" .. (i + 10);\
+  end\
   return factory.composite_string(\
     string.format(\
-      [[s2i(sub(gsg({data_name}), %d * (i + 1), 2), -1) - 11]],\
+      [[index("%s", "|" . sub(gsg({data_name}), %d * (i + 1), 2), 0) / 3]],\
+      table.concat(acc),\
       factory.main_size\
     ),\
     nil,\
@@ -300,8 +302,7 @@ global.double.set({queue_str} . {recipe_item},\
 )
 i = i + 1
 ; Uncomment this line for debugging. It will show the quantities and ids of all
-; items that need to be produced. (The ids will be +100, because of internal reasons.)
-; You will also need to enable another line above.
+; items that need to be produced. You will also need to enable another line above.
 ;gss("debug", gsg("debug") . if(gdg({queue_str} . {recipe_item}) > 0., "<br>" . {recipe_item} . " " . gdg({queue_str} . {recipe_item}), ""))
 gotoif(loop, i < {recipe_limit})
 
@@ -335,7 +336,11 @@ gss(\
       if(\
         {get_queue(1, void_essence)} > 0.,\
         "<color=#fb3>Missing " . {get_queue(1, void_essence)} . " void essence!</color>",\
+        if(\
+        {get_queue(1, pumpkin)} > 0.,\
+        "<color=#fb3>Missing " . {get_queue(1, pumpkin)} . " pumpkin!</color>",\
         ""\
+        	)\
       )\
     )\
   )\
